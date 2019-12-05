@@ -1,0 +1,42 @@
+<RCC>
+    <qresource prefix="/img"/>
+    <qresource prefix="/theme1">
+        <file>back.png</file>
+        <file>simple_back.png</file>
+    </qresource>
+    <qresource prefix="/other">
+        <file>transp_back.png</file>
+        <file>white_back.png</file>
+        <file>not_really_transp_back.png</file>
+        <file>1.png</file>
+        <file>2.png</file>
+        <file>3.png</file>
+        <file>4.png</file>
+        <file>simple_back_18.png</file>
+        <file>test.gif</file>
+        <file>my_test.gif</file>
+        <file>my_test_2.gif</file>
+        <file>my_test_3.gif</file>
+        <file>my_test_4.gif</file>
+        <file>rules.JPG</file>
+    </qresource>
+    <qresource prefix="/theme2">
+        <file>back_2(2).png</file>
+        <file>simple_back_2(2).png</file>
+        <file>gif_2.gif</file>
+    </qresource>
+    <qresource prefix="/theme3">
+        <file>back_3.png</file>
+        <file>simple_back_3.png</file>
+        <file>gif_3.gif</file>
+    </qresource>
+    <qresource prefix="/theme4">
+        <file>back_4.png</file>
+    </qresource>
+    <qresource prefix="/question">
+        <file>question_1.png</file>
+        <file>question_2.png</file>
+        <file>question_3.png</file>
+        <file>question_1_1.png</file>
+    </qresource>
+</RCC>
