@@ -1,34 +1,29 @@
 <RCC>
-    <qresource prefix="/img"/>
-    <qresource prefix="/theme_1">
-        <file>back_1.png</file>
-        <file>simple_back_1.png</file>
-        <file>gif_1.gif</file>
-    </qresource>
-    <qresource prefix="/other">
-        <file>transp_back.png</file>
-        <file>icon_1.png</file>
-        <file>icon_2.png</file>
-        <file>icon_3.png</file>
-        <file>icon_4.png</file>
-    </qresource>
-    <qresource prefix="/theme_2">
-        <file>back_2.png</file>
-        <file>simple_back_2.png</file>
-        <file>gif_2.gif</file>
-    </qresource>
-    <qresource prefix="/theme_3">
-        <file>back_3.png</file>
-        <file>simple_back_3.png</file>
-        <file>gif_3.gif</file>
-    </qresource>
-    <qresource prefix="/theme_4">
-        <file>back_4.png</file>
-        <file>simple_back_4.png</file>
-    </qresource>
-    <qresource prefix="/question">
-        <file>question_1.png</file>
-        <file>question_2.png</file>
-        <file>question_3.png</file>
+    <qresource prefix="/theme_1"/>
+    <qresource prefix="/other"/>
+    <qresource prefix="/theme_2"/>
+    <qresource prefix="/theme_3"/>
+    <qresource prefix="/theme_4"/>
+    <qresource prefix="/question"/>
+    <qresource prefix="/">
+        <file>src/other/icon_1.png</file>
+        <file>src/other/icon_2.png</file>
+        <file>src/other/icon_3.png</file>
+        <file>src/other/icon_4.png</file>
+        <file>src/other/transp_back.png</file>
+        <file>src/questions/question_1.png</file>
+        <file>src/questions/question_2.png</file>
+        <file>src/questions/question_3.png</file>
+        <file>src/theme_1/back.png</file>
+        <file>src/theme_1/gif.gif</file>
+        <file>src/theme_1/simple_back.png</file>
+        <file>src/theme_2/back.png</file>
+        <file>src/theme_2/gif.gif</file>
+        <file>src/theme_2/simple_back.png</file>
+        <file>src/theme_3/back.png</file>
+        <file>src/theme_3/gif.gif</file>
+        <file>src/theme_3/simple_back.png</file>
+        <file>src/theme_4/back.png</file>
+        <file>src/theme_4/simple_back.png</file>
     </qresource>
 </RCC>
