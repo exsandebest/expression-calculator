@@ -1,0 +1,15 @@
+---
+expression
+(variable's values)
+result
+---
+2 + 2
+4
+---
+2 ^ 2
+4
+---
+x ^ 3
+x = 2
+8
+---
