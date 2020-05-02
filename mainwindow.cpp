@@ -51,6 +51,11 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(question_button, SIGNAL(clicked()), this, SLOT(question_slot()));
     question_button_clicked(this);
 
+
+    ui->theme_1_btn->setStyleSheet({"background-image: url(\":/other/icon_1.png\");"});
+    ui->theme_2_btn->setStyleSheet({"background-image: url(\":/other/icon_2.png\");"});
+    ui->theme_3_btn->setStyleSheet({"background-image: url(\":/other/icon_3.png\");"});
+    ui->theme_4_btn->setStyleSheet({"background-image: url(\":/other/icon_4.png\");"});
     on_theme_1_btn_clicked();
 }
 
@@ -978,16 +983,15 @@ void MainWindow::on_btn_angle_clicked(){
     }
 }
 
-void MainWindow::on_theme_1_btn_clicked(){
-    //dark
+void MainWindow::on_theme_1_btn_clicked(){ //dark
     pause_flag = 0;
     ui->btn_stop->setText(QString("■"));
-    ui->centralwidget->setStyleSheet({"background-image: url(\":/theme1/back.png\");"});
+    ui->centralwidget->setStyleSheet({"background-image: url(\":/theme_1/back_1.png\");"});
     //backs of rectangles
-    ui->input_line->setStyleSheet({"background-image: url(\":/theme1/simple_back.png\"); color : white;"});
-    ui->lbl_output->setStyleSheet({"background-image: url(\":/theme1/simple_back.png\"); color : white;"});
+    ui->input_line->setStyleSheet({"background-image: url(\":/theme_1/simple_back_1.png\"); color : white;"});
+    ui->lbl_output->setStyleSheet({"background-image: url(\":/theme_1/simple_back_1.png\"); color : white;"});
    // ui->table_widget->setStyleSheet({"background-image: url(\":/other/transp_back.png\"); color : white;"});
-    ui->output_line->setStyleSheet({"background-image: url(\":/theme1/simple_back.png\"); color : white;"});
+    ui->output_line->setStyleSheet({"background-image: url(\":/theme_1/simple_back_1.png\"); color : white;"});
     //labels & text_colours
     ui->polis_label->setStyleSheet({"background-image: url(\":/other/transp_back.png\"); color : lightGray; "});
     ui->var_label->setStyleSheet({"background-image: url(\":/other/transp_back.png\"); color : white;"});
@@ -995,19 +999,15 @@ void MainWindow::on_theme_1_btn_clicked(){
     ui->ans_label->setStyleSheet({"background-image: url(\":/other/transp_back.png\"); color : lightGray;"});
     ui->theme_label->setStyleSheet({"background-image: url(\":/other/transp_back.png\"); color : white;"});
     //buttons
-    ui->btn_enter->setStyleSheet({"background-image: url(\":/theme1/simple_back.png\"); color : white;"});
-    ui->btn_angle->setStyleSheet({"background-image: url(\":/theme1/simple_back.png\"); color : white;"});
-    ui->btn_question->setStyleSheet({"background-image: url(\":/theme1/simple_back.png\"); color : white;"});
-    ui->theme_1_btn->setStyleSheet({"background-image: url(\":/other/1.png\");"});
-    ui->theme_2_btn->setStyleSheet({"background-image: url(\":/other/2.png\");"});
-    ui->theme_3_btn->setStyleSheet({"background-image: url(\":/other/3.png\");"});
-    ui->theme_4_btn->setStyleSheet({"background-image: url(\":/other/4.png\");"});
+    ui->btn_enter->setStyleSheet({"background-image: url(\":/theme_1/simple_back_1.png\"); color : white;"});
+    ui->btn_angle->setStyleSheet({"background-image: url(\":/theme_1/simple_back_1.png\"); color : white;"});
+    ui->btn_question->setStyleSheet({"background-image: url(\":/theme_1/simple_back_1.png\"); color : white;"});
     //gif
     ui->btn_stop->show();
-    ui->btn_stop->setStyleSheet({"background-image: url(\":/theme1/simple_back.png\"); color : white;"});
+    ui->btn_stop->setStyleSheet({"background-image: url(\":/theme_1/simple_back_1.png\"); color : white;"});
 
     ui->gif_label->setStyleSheet({"background-image: url(\":/other/transp_back.png\");"});
-    movieNew = new QMovie(":/other/my_test_3.gif" );
+    movieNew = new QMovie(":/theme_1/gif_1.gif" );
     ui->gif_label->setVisible(true);
     ui->gif_label->setMovie(movieNew );
     movieNew -> start();
@@ -1024,12 +1024,12 @@ void MainWindow::on_theme_2_btn_clicked(){
     pause_flag = 0;
     ui->btn_stop->setText(QString("■"));
     movieNew ->stop();
-    ui->centralwidget->setStyleSheet({"background-image: url(\":/theme2/back_2(2).png\");"});
+    ui->centralwidget->setStyleSheet({"background-image: url(\":/theme_2/back_2.png\");"});
     //backs of rectangles
-    ui->input_line->setStyleSheet({"background-image: url(\":/theme2/simple_back_2(2).png\"); color : white;"});
-    ui->lbl_output->setStyleSheet({"background-image: url(\":/theme2/simple_back_2(2).png\"); color : white;"});
+    ui->input_line->setStyleSheet({"background-image: url(\":/theme_2/simple_back_2.png\"); color : white;"});
+    ui->lbl_output->setStyleSheet({"background-image: url(\":/theme_2/simple_back_2.png\"); color : white;"});
    // ui->table_widget->setStyleSheet({"background-image: url(\":/other/transp_back.png\"); color : white;"});
-    ui->output_line->setStyleSheet({"background-image: url(\":/theme2/simple_back_2(2).png\"); color : white;"});
+    ui->output_line->setStyleSheet({"background-image: url(\":/theme_2/simple_back_2.png\"); color : white;"});
     //labels & text_colours
     ui->polis_label->setStyleSheet({"background-image: url(\":/other/transp_back.png\"); color : lightGray;"});
     ui->var_label->setStyleSheet({"background-image: url(\":/other/transp_back.png\"); color : white;"});
@@ -1037,27 +1037,23 @@ void MainWindow::on_theme_2_btn_clicked(){
     ui->ans_label->setStyleSheet({"background-image: url(\":/other/transp_back.png\"); color : lightGray;"});
     ui->theme_label->setStyleSheet({"background-image: url(\":/other/transp_back.png\"); color : white;"});
     //buttons
-    ui->btn_enter->setStyleSheet({"background-image: url(\":/theme2/simple_back_2(2).png\"); color : white;"});
-    ui->btn_angle->setStyleSheet({"background-image: url(\":/theme2/simple_back_2(2).png\"); color : white;"});
-    ui->btn_question->setStyleSheet({"background-image: url(\":/theme2/simple_back_2(2).png\"); color : white;"});
-    ui->theme_1_btn->setStyleSheet({"background-image: url(\":/other/1.png\");"});
-    ui->theme_2_btn->setStyleSheet({"background-image: url(\":/other/2.png\");"});
-    ui->theme_3_btn->setStyleSheet({"background-image: url(\":/other/3.png\");"});
-    ui->theme_4_btn->setStyleSheet({"background-image: url(\":/other/4.png\");"});
+    ui->btn_enter->setStyleSheet({"background-image: url(\":/theme_2/simple_back_2.png\"); color : white;"});
+    ui->btn_angle->setStyleSheet({"background-image: url(\":/theme_2/simple_back_2.png\"); color : white;"});
+    ui->btn_question->setStyleSheet({"background-image: url(\":/theme_2/simple_back_2.png\"); color : white;"});
     //gif
    // ui->gif_label->setVisible(false);
     ui->gif_label->setStyleSheet({"background-image: url(\":/other/transp_back.png\");"});
     ui->btn_stop->show();
-    ui->btn_stop->setStyleSheet({"background-image: url(\":/theme2/simple_back_2(2).png\"); color : white;"});
+    ui->btn_stop->setStyleSheet({"background-image: url(\":/theme_2/simple_back_2.png\"); color : white;"});
     /*
-    QMovie *movieNew = new QMovie(":/other/my_test_3.gif" );
+    QMovie *movieNew = new QMovie(":/theme_1/gif_1.gif" );
     ui->gif_label->setMovie(movieNew );
     movieNew -> start();
     */
 
     ui->gif_label->show();
     ui->gif_label->setStyleSheet({"background-image: url(\":/other/transp_back.png\");"});
-    movieNew->setFileName(":/theme2/gif_2.gif");
+    movieNew->setFileName(":/theme_2/gif_2.gif");
     movieNew -> start();
 
     ui->table_widget->setStyleSheet("background-image: url('le')");
@@ -1075,12 +1071,12 @@ void MainWindow::on_theme_3_btn_clicked()
     pause_flag = 0;
     ui->btn_stop->setText(QString("■"));
     movieNew ->stop();
-    ui->centralwidget->setStyleSheet({"background-image: url(\":/theme3/back_3.png\");"});
+    ui->centralwidget->setStyleSheet({"background-image: url(\":/theme_3/back_3.png\");"});
     //backs of rectangles
-    ui->input_line->setStyleSheet({"background-image: url(\":/theme3/simple_back_3.png\");"});
-    ui->lbl_output->setStyleSheet({"background-image: url(\":/theme3/simple_back_3.png\");"});
+    ui->input_line->setStyleSheet({"background-image: url(\":/theme_3/simple_back_3.png\");"});
+    ui->lbl_output->setStyleSheet({"background-image: url(\":/theme_3/simple_back_3.png\");"});
     ui->table_widget->setStyleSheet({"background-image: url(\":/other/transp_back.png\");"});
-    ui->output_line->setStyleSheet({"background-image: url(\":/theme3/simple_back_3.png\");"});
+    ui->output_line->setStyleSheet({"background-image: url(\":/theme_3/simple_back_3.png\");"});
     //labels & text_colours
     ui->polis_label->setStyleSheet({"background-image: url(\":/other/transp_back.png\"); color : white;"});
     ui->var_label->setStyleSheet({"background-image: url(\":/other/transp_back.png\"); color : white;"});
@@ -1088,26 +1084,22 @@ void MainWindow::on_theme_3_btn_clicked()
     ui->ans_label->setStyleSheet({"background-image: url(\":/other/transp_back.png\"); color : white;" });
     ui->theme_label->setStyleSheet({"background-image: url(\":/other/transp_back.png\"); color : white;"});
     //buttons
-    ui->btn_enter->setStyleSheet({"background-image: url(\":/theme3/simple_back_3.png\"); color : white;"});
-    ui->btn_angle->setStyleSheet({"background-image: url(\":/theme3/simple_back_3.png\"); color : white;"});
-    ui->btn_question->setStyleSheet({"background-image: url(\":/theme3/simple_back_3.png\"); color : white;"});
-    ui->theme_1_btn->setStyleSheet({"background-image: url(\":/other/1.png\");"});
-    ui->theme_2_btn->setStyleSheet({"background-image: url(\":/other/2.png\");"});
-    ui->theme_3_btn->setStyleSheet({"background-image: url(\":/other/3.png\");"});
-    ui->theme_4_btn->setStyleSheet({"background-image: url(\":/other/4.png\");"});
+    ui->btn_enter->setStyleSheet({"background-image: url(\":/theme_3/simple_back_3.png\"); color : white;"});
+    ui->btn_angle->setStyleSheet({"background-image: url(\":/theme_3/simple_back_3.png\"); color : white;"});
+    ui->btn_question->setStyleSheet({"background-image: url(\":/theme_3/simple_back_3.png\"); color : white;"});
     //gif
     //ui->gif_label->setVisible(false);
     ui->btn_stop->show();
-    ui->btn_stop->setStyleSheet({"background-image: url(\":/theme3/simple_back_3.png\"); color : white;"});
+    ui->btn_stop->setStyleSheet({"background-image: url(\":/theme_3/simple_back_3.png\"); color : white;"});
     ui->gif_label->setStyleSheet({"background-image: url(\":/other/transp_back.png\");"});
 
     ui->gif_label->show();
     ui->gif_label->setStyleSheet({"background-image: url(\":/other/transp_back.png\");"});
-    movieNew->setFileName(":/theme3/gif_3.gif");
+    movieNew->setFileName(":/theme_3/gif_3.gif");
     movieNew -> start();
 
     /*
-    QMovie *movieNew = new QMovie(":/other/my_test_3.gif" );
+    QMovie *movieNew = new QMovie(":/theme_1/gif_1.gif" );
     ui->gif_label->setMovie(movieNew );
     movieNew -> start();
     */
@@ -1125,12 +1117,12 @@ void MainWindow::on_theme_4_btn_clicked()
     pause_flag = 0;
     ui->btn_stop->setText(QString("■"));
     movieNew ->stop();
-    ui->centralwidget->setStyleSheet({"background-image: url(\":/theme4/back_4.png\");"});
+    ui->centralwidget->setStyleSheet({"background-image: url(\":/theme_4/back_4.png\");"});
     //backs of rectangles
-    ui->input_line->setStyleSheet({"background-image: url(\":/other/simple_back_18.png\");"});
-    ui->lbl_output->setStyleSheet({"background-image: url(\":/other/simple_back_18.png\");"});
+    ui->input_line->setStyleSheet({"background-image: url(\":/theme_4/simple_back_4.png\");"});
+    ui->lbl_output->setStyleSheet({"background-image: url(\":/theme_4/simple_back_4.png\");"});
    // ui->table_widget->setStyleSheet({"background-image: url(\":/other/transp_back.png\");"});
-    ui->output_line->setStyleSheet({"background-image: url(\":/other/simple_back_18.png\");"});
+    ui->output_line->setStyleSheet({"background-image: url(\":/theme_4/simple_back_4.png\");"});
     //labels & text_colours
     ui->polis_label->setStyleSheet({"background-image: url(\":/other/transp_back.png\");"});
     ui->var_label->setStyleSheet({"background-image: url(\":/other/transp_back.png\");"});
@@ -1138,13 +1130,9 @@ void MainWindow::on_theme_4_btn_clicked()
     ui->ans_label->setStyleSheet({"background-image: url(\":/other/transp_back.png\");"});
     ui->theme_label->setStyleSheet({"background-image: url(\":/other/transp_back.png\");"});
     //buttons
-    ui->btn_enter->setStyleSheet({"background-image: url(\":/other/simple_back_18.png\");"});
-    ui->btn_angle->setStyleSheet({"background-image: url(\":/other/simple_back_18.png\");"});
-    ui->btn_question->setStyleSheet({"background-image: url(\":/other/simple_back_18.png\");"});
-    ui->theme_1_btn->setStyleSheet({"background-image: url(\":/other/1.png\");"});
-    ui->theme_2_btn->setStyleSheet({"background-image: url(\":/other/2.png\");"});
-    ui->theme_3_btn->setStyleSheet({"background-image: url(\":/other/3.png\");"});
-    ui->theme_4_btn->setStyleSheet({"background-image: url(\":/other/4.png\");"});
+    ui->btn_enter->setStyleSheet({"background-image: url(\":/theme_4/simple_back_4.png\");"});
+    ui->btn_angle->setStyleSheet({"background-image: url(\":/theme_4/simple_back_4.png\");"});
+    ui->btn_question->setStyleSheet({"background-image: url(\":/theme_4/simple_back_4.png\");"});
     ui->btn_stop->hide();
     //gif
     ui->gif_label->hide();
@@ -1164,15 +1152,15 @@ void question_button_clicked(QObject * obj) {
     if(question_button_flag == 0) {
         QPixmap a(":/question/question_2.png");
         question_label->setPixmap(a);
-        question_widget->setStyleSheet("background-image: url(\":/theme2/back_2(2).png\")");
-        question_button->setStyleSheet("background-image: url(\":/theme2/back_2(2).png\"); color : white;");
+        question_widget->setStyleSheet("background-image: url(\":/theme_2/back_2.png\")");
+        question_button->setStyleSheet("background-image: url(\":/theme_2/back_2.png\"); color : white;");
         question_button_flag++;
     }
     else if (question_button_flag == 1) {
         QPixmap a(":/question/question_3.png");
         question_label->setPixmap(a);
-        question_widget->setStyleSheet("background-image: url(\":/theme3/simple_back_3.png\")");
-        question_button->setStyleSheet("background-image: url(\":/theme3/simple_back_3.png\"); color : black;");
+        question_widget->setStyleSheet("background-image: url(\":/theme_3/simple_back_3.png\")");
+        question_button->setStyleSheet("background-image: url(\":/theme_3/simple_back_3.png\"); color : black;");
         question_button_flag++;
         question_button->setText("Спасибо");
     }
@@ -1192,8 +1180,8 @@ void MainWindow::on_btn_question_clicked(){
     QPixmap a(":/question/question_1.png");
     question_label->setPixmap(a);
     question_button->setText("Далее");
-    question_widget->setStyleSheet("background-image: url(\":/theme1/simple_back.png\")");
-    question_button->setStyleSheet("background-image: url(\":/theme1/simple_back.png\"); color : white;");
+    question_widget->setStyleSheet("background-image: url(\":/theme_1/simple_back_1.png\")");
+    question_button->setStyleSheet("background-image: url(\":/theme_1/simple_back_1.png\"); color : white;");
     question_button_flag = 0;
     question_widget->show();
 }
