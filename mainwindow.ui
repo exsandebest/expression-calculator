@@ -147,7 +147,7 @@
      <rect>
       <x>20</x>
       <y>60</y>
-      <width>61</width>
+      <width>131</width>
       <height>16</height>
      </rect>
     </property>
@@ -160,7 +160,7 @@
      </font>
     </property>
     <property name="text">
-     <string>ПОЛИЗ:  </string>
+     <string>Постфиксная запись:</string>
     </property>
    </widget>
    <widget class="QTextEdit" name="lbl_output">
@@ -188,7 +188,7 @@
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Calibri'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Calibri';&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
    <widget class="QLabel" name="ans_label">
@@ -196,8 +196,8 @@ p, li { white-space: pre-wrap; }
      <rect>
       <x>300</x>
       <y>480</y>
-      <width>47</width>
-      <height>13</height>
+      <width>71</width>
+      <height>16</height>
      </rect>
     </property>
     <property name="font">
@@ -209,7 +209,7 @@ p, li { white-space: pre-wrap; }
      </font>
     </property>
     <property name="text">
-     <string>Ответ:  </string>
+     <string>Результат:</string>
     </property>
    </widget>
    <widget class="QPushButton" name="btn_angle">
@@ -345,7 +345,7 @@ p, li { white-space: pre-wrap; }
      <rect>
       <x>310</x>
       <y>440</y>
-      <width>51</width>
+      <width>31</width>
       <height>31</height>
      </rect>
     </property>
@@ -358,7 +358,7 @@ p, li { white-space: pre-wrap; }
      </font>
     </property>
     <property name="text">
-     <string>Пауза</string>
+     <string>■</string>
     </property>
    </widget>
   </widget>

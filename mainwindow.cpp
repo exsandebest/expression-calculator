@@ -9,7 +9,6 @@
 #include <QMovie>
 #include <QGraphicsDropShadowEffect>
 #include <QGridLayout>
-//sin(cos(2 - 3)+2^(sin(pi-e^pi)+log(2,2^1e1))*log([-2]^[-6], 5^2)*(_x-2)*(2^x_1)/2-2/20e-1/10000e-4/x_1+2^2^(-_x)*sin(-[-2-pi/2+2*pi/8])^[cos(pi^e)]+777.32e-2+3.422-2/2-3+555^(1e0*log(sin(_x), sin(_x)^pi))-142^(2^(-(-2)))-45^sin(x_1-pi)^(3))-0.94013+654321980+log(2,2^7)-654321200-log(1.2,1.2^10)
 
 QMovie *movieNew;
 int pause_flag;
@@ -18,7 +17,6 @@ QWidget *question_widget;
 QLabel *question_label;
 QGridLayout *question_layout;
 QPushButton *question_button;
-
 Queue que_post;
 Queue variables;
 const double pi = 3.141592653589793238462643383279;
@@ -31,12 +29,11 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-
     ui->setupUi(this);
     ui->table_widget->setColumnCount(2);
     QTableWidgetItem * itm1 = new QTableWidgetItem, * itm2 = new QTableWidgetItem;
-    itm1->setText("Variable");
-    itm2->setText("Value");
+    itm1->setText("Переменная");
+    itm2->setText("Значение");
     ui->table_widget->setHorizontalHeaderItem(0,itm1);
     ui->table_widget->setHorizontalHeaderItem(1,itm2);
     ui->table_widget->horizontalHeader()->resizeSection(0,134);
@@ -378,6 +375,7 @@ int MainWindow::get_priority(QString operation){
     } else if (operation == ",") {
         return 1;
     }
+    return 0;
 }
 
 
@@ -823,7 +821,7 @@ Pair MainWindow::make_pair(double result, int idx){
 }
 
 Pair MainWindow::get_num(QString &str, int idx){
-    double z = 0, q = 0, ans;
+    double ans;
     QString sz = "", sq = "", se = "";
     if (str[idx] == ".") goto q_part;
     while ('0'<=str[idx] && str[idx]<='9'){
@@ -898,7 +896,6 @@ void MainWindow::update_ans(int row, int col){
 
 
 QString MainWindow::z_to_s(double a){
-    //return QString::number(a);
     if (equal(a,0)) return QString("0");
     if (equal(a, 1)) return QString ("1");
     if (equal(a,-1)) return QString ("-1");
@@ -984,6 +981,7 @@ void MainWindow::on_btn_angle_clicked(){
 void MainWindow::on_theme_1_btn_clicked(){
     //dark
     pause_flag = 0;
+    ui->btn_stop->setText(QString("■"));
     ui->centralwidget->setStyleSheet({"background-image: url(\":/theme1/back.png\");"});
     //backs of rectangles
     ui->input_line->setStyleSheet({"background-image: url(\":/theme1/simple_back.png\"); color : white;"});
@@ -1024,6 +1022,7 @@ void MainWindow::on_theme_1_btn_clicked(){
 void MainWindow::on_theme_2_btn_clicked(){
     //autumn
     pause_flag = 0;
+    ui->btn_stop->setText(QString("■"));
     movieNew ->stop();
     ui->centralwidget->setStyleSheet({"background-image: url(\":/theme2/back_2(2).png\");"});
     //backs of rectangles
@@ -1074,6 +1073,7 @@ void MainWindow::on_theme_3_btn_clicked()
 {
     //clouds
     pause_flag = 0;
+    ui->btn_stop->setText(QString("■"));
     movieNew ->stop();
     ui->centralwidget->setStyleSheet({"background-image: url(\":/theme3/back_3.png\");"});
     //backs of rectangles
@@ -1123,6 +1123,7 @@ void MainWindow::on_theme_4_btn_clicked()
 {
     //retro
     pause_flag = 0;
+    ui->btn_stop->setText(QString("■"));
     movieNew ->stop();
     ui->centralwidget->setStyleSheet({"background-image: url(\":/theme4/back_4.png\");"});
     //backs of rectangles
@@ -1187,10 +1188,6 @@ void question_button_clicked(QObject * obj) {
 
 
 void MainWindow::on_btn_question_clicked(){
-
-
-
-
     question_widget->hide();
     QPixmap a(":/question/question_1.png");
     question_label->setPixmap(a);
@@ -1199,18 +1196,17 @@ void MainWindow::on_btn_question_clicked(){
     question_button->setStyleSheet("background-image: url(\":/theme1/simple_back.png\"); color : white;");
     question_button_flag = 0;
     question_widget->show();
-
-
-
 }
 
 void MainWindow::on_btn_stop_clicked(){
     if (pause_flag == 0) {
+        ui->btn_stop->setText(QString("▶"));
         pause_flag = 1;
         movieNew -> stop();
     }
     else {
         pause_flag = 0;
+        ui->btn_stop->setText(QString("■"));
         movieNew -> start();
     }
 
