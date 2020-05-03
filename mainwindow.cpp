@@ -1,9 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <QDebug>
 #include <math.h>
 #include <QTableWidget>
-#include <QAbstractItemDelegate>
 #include <QMessageBox>
 #include <QKeyEvent>
 #include <QMovie>
@@ -19,16 +17,18 @@ QPushButton *question_button;
 Queue que_post;
 Queue que_in;
 Queue variables;
+QGraphicsDropShadowEffect *effect = new QGraphicsDropShadowEffect();
 
 QVector <QPushButton *> buttons;
 QVector <QLabel *> labels;
+QVector <QLineEdit *> ios;
 
 const double pi = 3.141592653589793238462643383279;
 const double e = 2.718281828459045235360287471352;
 const double PRECISION = 1e-15;
 
 int question_button_flag;
-int pause_flag;
+int pause_flag = 0;
 int angle = 1;
 
 
@@ -37,6 +37,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    this->setFixedSize(838, 592);
+
     ui->table_widget->setColumnCount(2);
     QTableWidgetItem * itm1 = new QTableWidgetItem, * itm2 = new QTableWidgetItem;
     itm1->setText("Переменная");
@@ -46,7 +48,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->table_widget->horizontalHeader()->resizeSection(0,134);
     ui->table_widget->horizontalHeader()->resizeSection(1,135);
     ui->table_widget->verticalHeader()->setVisible(false);
-    pause_flag = 0;
+
     question_widget = new QWidget;
     question_layout = new QGridLayout;
     question_widget->setLayout(question_layout);
@@ -62,16 +64,30 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->theme_2_btn->setStyleSheet({"background-image: url(\":/src/other/icon_2.png\");"});
     ui->theme_3_btn->setStyleSheet({"background-image: url(\":/src/other/icon_3.png\");"});
     ui->theme_4_btn->setStyleSheet({"background-image: url(\":/src/other/icon_4.png\");"});
+
     buttons.push_back(ui->btn_stop);
     buttons.push_back(ui->btn_angle);
     buttons.push_back(ui->btn_enter);
     buttons.push_back(ui->btn_question);
+
     labels.push_back(ui->ans_label);
     labels.push_back(ui->gif_label);
     labels.push_back(ui->var_label);
     labels.push_back(ui->angle_label);
     labels.push_back(ui->polis_label);
     labels.push_back(ui->theme_label);
+
+    ios.push_back(ui->lbl_output);
+    ios.push_back(ui->input_line);
+    ios.push_back(ui->output_line);
+
+    effect->setBlurRadius(40);
+    effect->setOffset(0.5);
+    ui->table_widget->setGraphicsEffect(effect);
+
+    movieNew = new QMovie();
+    ui->gif_label->setMovie(movieNew);
+
     on_theme_1_btn_clicked();
 }
 
@@ -903,7 +919,10 @@ void MainWindow::update_ans(int row, int col){
                 return;
             }
     }
-    on_btn_update_clicked();
+    get_variables_from_input();
+    Queue new_que = get_new_queue();
+    double ans = evaluate(new_que);
+    write_ans(ans);
     } catch (QString str){
        QMessageBox::warning(this, "Warning", str);
     }
@@ -976,14 +995,6 @@ void MainWindow::write_ans(double ans){
     ui->lbl_output->setText(s1);
 }
 
-void MainWindow::on_btn_update_clicked()
-{
-    get_variables_from_input();
-    Queue new_que = get_new_queue();
-    double ans = evaluate(new_que);
-    write_ans(ans);
-}
-
 void MainWindow::on_btn_angle_clicked(){
     if (angle == 0){
         angle = 1;
@@ -995,111 +1006,92 @@ void MainWindow::on_btn_angle_clicked(){
 }
 
 void MainWindow::on_theme_1_btn_clicked(){ //dark
-    pause_flag = 0;
-    ui->btn_stop->setText(QString("■"));
     ui->centralwidget->setStyleSheet({"background-image: url(\":/src/theme_1/back.png\");"});
-    //backs of rectangles
-    ui->input_line->setStyleSheet({"background-image: url(\":/src/theme_1/simple_back.png\"); color : white;"});
-    ui->lbl_output->setStyleSheet({"background-image: url(\":/src/theme_1/simple_back.png\"); color : white;"});
-    ui->output_line->setStyleSheet({"background-image: url(\":/src/theme_1/simple_back.png\"); color : white;"});
+    for (auto io: ios){
+        io->setStyleSheet({"background-image: url(\":/src/theme_1/simple_back.png\"); color : white;"});
+    }
     for (auto lbl: labels){
         lbl->setStyleSheet({"background-image: url(\":/src/other/transp_back.png\"); color: white;"});
     }
     for (auto btn: buttons){
         btn->setStyleSheet({"background-image: url(\":/src/theme_1/simple_back.png\"); color : white;"});
     }
-    //gif
+
+    effect->setColor(QColor(51, 153, 255));
+
+    pause_flag = 0;
+    ui->btn_stop->setText(QString("■"));
     ui->btn_stop->show();
-    movieNew = new QMovie(":/src/theme_1/gif.gif" );
-    ui->gif_label->setVisible(true);
-    ui->gif_label->setMovie(movieNew );
-    movieNew -> start();
-    auto effect = new QGraphicsDropShadowEffect();
-        effect->setBlurRadius(40);
-        effect->setOffset(0.5);
-        effect->setColor(QColor(51, 153, 255));
-    ui->table_widget->setGraphicsEffect(effect);
+    movieNew->stop();
+    movieNew->setFileName(":src/theme_1/gif.gif");
+    movieNew->start();
+    ui->gif_label->show();
+
 }
 
 void MainWindow::on_theme_2_btn_clicked(){ //autumn
-    pause_flag = 0;
-    ui->btn_stop->setText(QString("■"));
-    movieNew ->stop();
     ui->centralwidget->setStyleSheet({"background-image: url(\":/src/theme_2/back.png\");"});
-    //backs of rectangles
-    ui->input_line->setStyleSheet({"background-image: url(\":/src/theme_2/simple_back.png\"); color : white;"});
-    ui->lbl_output->setStyleSheet({"background-image: url(\":/src/theme_2/simple_back.png\"); color : white;"});
-    ui->output_line->setStyleSheet({"background-image: url(\":/src/theme_2/simple_back.png\"); color : white;"});
+    for (auto io: ios){
+        io->setStyleSheet({"background-image: url(\":/src/theme_2/simple_back.png\"); color : white;"});
+    }
     for (auto lbl: labels){
         lbl->setStyleSheet({"background-image: url(\":/src/other/transp_back.png\"); color : white;"});
     }
     for (auto btn: buttons){
         btn->setStyleSheet({"background-image: url(\":/src/theme_2/simple_back.png\"); color : white;"});
     }
-    //gif
-    ui->btn_stop->show();
-    ui->gif_label->show();
-    movieNew->setFileName(":/src/theme_2/gif.gif");
-    movieNew -> start();
-    auto effect = new QGraphicsDropShadowEffect();
-        effect->setBlurRadius(40);
-        effect->setOffset(0.5);
-        effect->setColor(QColor(255, 204, 0));
-    ui->table_widget->setGraphicsEffect(effect);
 
+    effect->setColor(QColor(255, 204, 0));
+
+    pause_flag = 0;
+    ui->btn_stop->setText(QString("■"));
+    ui->btn_stop->show();
+    movieNew->stop();
+    movieNew->setFileName(":/src/theme_2/gif.gif");
+    movieNew->start();
+    ui->gif_label->show();
 }
 
 void MainWindow::on_theme_3_btn_clicked() { //clouds
-    pause_flag = 0;
-    ui->btn_stop->setText(QString("■"));
-    movieNew ->stop();
     ui->centralwidget->setStyleSheet({"background-image: url(\":/src/theme_3/back.png\");"});
-    //backs of rectangles
-    ui->input_line->setStyleSheet({"background-image: url(\":/src/theme_3/simple_back.png\");"});
-    ui->lbl_output->setStyleSheet({"background-image: url(\":/src/theme_3/simple_back.png\");"});
-    ui->table_widget->setStyleSheet({"background-image: url(\":/src/other/transp_back.png\");"});
-    ui->output_line->setStyleSheet({"background-image: url(\":/src/theme_3/simple_back.png\");"});
+    for (auto io: ios){
+        io->setStyleSheet({"background-image: url(\":/src/theme_3/simple_back.png\");"});
+    }
     for (auto lbl: labels){
         lbl->setStyleSheet({"background-image: url(\":/src/other/transp_back.png\"); color : white;"});
     }
     for (auto btn: buttons){
         btn->setStyleSheet({"background-image: url(\":/src/theme_3/simple_back.png\"); color : white;"});
     }
-    //gif
+
+    effect->setColor(QColor(255, 153, 204));
+
+    pause_flag = 0;
+    ui->btn_stop->setText(QString("■"));
     ui->btn_stop->show();
-    ui->gif_label->show();
+    movieNew->stop();
     movieNew->setFileName(":/src/theme_3/gif.gif");
-    movieNew -> start();
-    auto effect = new QGraphicsDropShadowEffect();
-            effect->setBlurRadius(40);
-            effect->setOffset(0.5);
-            effect->setColor(QColor(255, 153, 204));
-        ui->table_widget->setGraphicsEffect(effect);
+    movieNew->start();
+    ui->gif_label->show();
 }
 
 void MainWindow::on_theme_4_btn_clicked() { //retro
-    pause_flag = 0;
-    ui->btn_stop->setText(QString("■"));
-    movieNew ->stop();
     ui->centralwidget->setStyleSheet({"background-image: url(\":/src/theme_4/back.png\");"});
-    //backs of rectangles
-    ui->input_line->setStyleSheet({"background-image: url(\":/src/theme_4/simple_back.png\");"});
-    ui->lbl_output->setStyleSheet({"background-image: url(\":/src/theme_4/simple_back.png\");"});
-    ui->output_line->setStyleSheet({"background-image: url(\":/src/theme_4/simple_back.png\");"});
+    for (auto io: ios){
+        io->setStyleSheet({"background-image: url(\":/src/theme_4/simple_back.png\");"});
+    }
     for (auto lbl: labels){
         lbl->setStyleSheet({"background-image: url(\":/src/other/transp_back.png\");"});
     }
     for (auto btn: buttons){
         btn->setStyleSheet({"background-image: url(\":/src/theme_1/simple_back.png\"); color : white;"});
     }
+
+    effect->setColor(QColor(255, 217, 179));
+
+    movieNew->stop();
     ui->btn_stop->hide();
-    //gif
     ui->gif_label->hide();
-    auto effect = new QGraphicsDropShadowEffect();
-            effect->setBlurRadius(40);
-            effect->setOffset(0.5);
-            effect->setColor(QColor(255, 217, 179));
-        ui->table_widget->setGraphicsEffect(effect);
 }
 
 

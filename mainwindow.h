@@ -180,19 +180,6 @@ public:
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 class Stack {
     public:
     Node * head;
@@ -370,8 +357,6 @@ private slots:
     void update_ans(int row, int col);
 
     void on_btn_enter_clicked();
-
-    void on_btn_update_clicked();
 
     void on_btn_angle_clicked();
 
